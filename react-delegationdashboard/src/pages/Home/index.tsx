@@ -1,10 +1,12 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { faBan, faCircleNotch } from '@fortawesome/free-solid-svg-icons';
-import { ReactComponent as Logo } from 'assets/images/logo.svg';
+import Logo from 'assets/images/logo.png';
 import State from 'components/State';
 import { useContext } from 'context';
 import WalletLogin from './Login/Wallet';
+import Views from 'components/Overview/Cards';
+import { Calculator } from 'components/Calculator';
 import WalletConnectLogin from './Login/WalletConnect';
 
 const Home = () => {
@@ -13,7 +15,8 @@ const Home = () => {
   const ref = React.useRef(null);
 
   return (
-    <div ref={ref} className="home d-flex flex-fill align-items-center">
+    <div ref={ref} className="home d-row flex-fill align-items-center">
+      <Calculator />
       {error ? (
         <State
           icon={faBan}
@@ -29,7 +32,7 @@ const Home = () => {
         <div className="m-auto login-container">
           <div className="card my-spacer text-center">
             <div className="card-body p-spacer mx-lg-spacer">
-              <Logo className="logo mb-spacer" />
+              <img src={Logo} className="logo" />
               <h4 className="mb-spacer">Elrond Delegation Manager</h4>
               <p className="lead mb-spacer">
                 Delegate Elrond ({egldLabel}) and earn up to 14% APR!

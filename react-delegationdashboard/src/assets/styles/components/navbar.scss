@@ -1,11 +1,12 @@
 .navbar {
-  svg.logo {
+  .logo {
     fill: $brand-color;
-    height: $logo-height;
+    height: $logo-navbar-height;
     width: auto;
   }
   .navbar-brand {
     color: $brand-color;
-    line-height: $logo-height;
+    line-height: $logo-navbar-height;
   }
+  background-color: rgba(255, 255, 255, 0.1)!important;
 }

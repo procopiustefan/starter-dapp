@@ -26,11 +26,12 @@ $light-red: #ffe2e630;
 $light-primary: #e1f0ff30;
 $disabled: #333;
 
-$card-bg: rgba(0, 0, 0, 0.4);
+$card-bg: rgba(0, 0, 0, 0.65);
 $text-muted: $muted;
 $brand-color: $white;
-$logo-height: 1.5rem;
-$bg-image: linear-gradient(143deg, #043a8c 0%, #4e4e4e 86%);
+$logo-height: 9.5rem;
+$logo-navbar-height: 5rem;
+$bg-image: no-repeat url(../../images/background.jpg);
 $footer-color: $white;
 
 $lead-font-size: 1.15rem;

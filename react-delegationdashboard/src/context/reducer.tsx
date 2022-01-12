@@ -9,8 +9,11 @@ export type ActionType =
   | { type: 'logout'; provider: StateType['dapp']['provider'] }
   | { type: 'loading'; loading: StateType['loading'] }
   | { type: 'setProvider'; provider: StateType['dapp']['provider'] }
-  | { type: 'setAccount'; account: StateType['account'] }
-  | { type: 'setContractOverview'; contractOverview: StateType['contractOverview'] }
+  | { type: 'setAccount'; account: StateType['account'] }  
+  | { type: 'setUSD'; USD: StateType['USD'] }
+  | { type: 'setNodes'; nodes: StateType['nodes'] }
+  | { type: 'setContractOverview'; contractOverview: StateType['contractOverview'] }  
+  | { type: 'setNumberOfEligibleNodes'; numberOfEligibleNodes: StateType['numberOfEligibleNodes'] }
   | { type: 'setNetworkConfig'; networkConfig: StateType['networkConfig'] }
   | { type: 'setAgencyMetaData'; agencyMetaData: StateType['agencyMetaData'] }
   | { type: 'setNumberOfActiveNodes'; numberOfActiveNodes: StateType['numberOfActiveNodes'] }
@@ -47,6 +50,31 @@ export function reducer(state: StateType, action: ActionType): StateType {
       return {
         ...state,
         ledgerLogin,
+      };
+    }
+
+    case 'setNodes': {
+      const { nodes } = action;
+      setItem('nodes', nodes);
+      return {
+        ...state,
+        nodes,
+      };
+    }
+    
+    case 'setNumberOfEligibleNodes': {
+      const { numberOfEligibleNodes } = action;
+      return {
+        ...state,
+        numberOfEligibleNodes,
+      };
+    }
+
+    case 'setUSD': {
+      const { USD } = action;
+      return {
+        ...state,
+        USD,
       };
     }
 
@@ -180,7 +208,7 @@ export function reducer(state: StateType, action: ActionType): StateType {
     }
 
     default: {
-      throw new Error(`Unhandled action type: ${action}`);
+      throw new Error(`Unhandled action type: ${action!.type}`);
     }
   }
 }

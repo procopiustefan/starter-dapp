@@ -32,6 +32,26 @@ export const defaultNetwork: NetworkType = {
   delegationContract: '',
 };
 
+export interface Nodes {
+  [key: string]: NodeDetails;
+}
+export interface NodeDetails {
+  timeStamp: string;
+  bls: string;
+  versionNumber: string;
+  name: string;
+  identity: string;
+  totalUpTimeSec: number;
+  totalDownTimeSec: number;
+  maxInactiveTime: string;
+  receivedShardID: number;
+  computedShardID: number;
+  status: string;
+  isActive: boolean;
+  nonce: number;
+  numInstances: number;
+}
+
 export interface DappState {
   provider: IDappProvider;
   proxy: ProxyProvider;
@@ -54,6 +74,9 @@ export interface StateType {
   egldLabel: string;
   denomination: number;
   decimals: number;
+  USD: number;
+  numberOfEligibleNodes: number;
+  nodes: Nodes,
   account: AccountType;
   explorerAddress: string;
   delegationContract?: string;
@@ -107,6 +130,9 @@ export const emptyContractOverview: ContractOverview = {
 export const initialState = (): {
   denomination: number;
   decimals: number;
+  USD: number,
+  numberOfEligibleNodes: number,
+  nodes: Nodes,
   dapp: {
     provider: HWProvider | WalletProvider | WalletConnectProvider;
     proxy: ProxyProvider;
@@ -137,6 +163,9 @@ export const initialState = (): {
   return {
     denomination: denomination,
     decimals: decimals,
+    USD: 0,
+    numberOfEligibleNodes: 0,
+    nodes: getItem('nodes'),
     dapp: {
       provider: new WalletProvider(sessionNetwork.walletAddress),
       proxy: new ProxyProvider(
@@ -176,6 +205,6 @@ export const initialState = (): {
           }
         : undefined,
 
-    walletConnectAccount: getItem('walletConnectLogin') ? getItem('address') : undefined,
+    walletConnectAccount: getItem('address'),
   };
 };
